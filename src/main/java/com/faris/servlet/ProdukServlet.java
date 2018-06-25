@@ -39,17 +39,15 @@ public class ProdukServlet extends HttpServlet {
 
         Part part = request.getPart("file");
         String fileName = extractFileName(part);
-        String savePath ="D:\\KERJA\\MGS\\SOAL-JAVAWEB\\MgsStore\\src\\main\\webapp\\images";
+        String savePath ="D:\\KERJA\\MGS\\SOAL-JAVAWEB\\MgsStore\\src\\main\\webapp\\images"+File.separator+fileName;
 //        File fileSaveDir = new File(savePath);
-        part.write(savePath+File.separator+fileName);
-        String filePath = savePath+File.separator+fileName;
+        part.write(savePath+File.separator);
 
         if (request.getParameter("id_produk") != null) {
             produk.setId_produk(Integer.parseInt(request.getParameter("id_produk")));
         }
         produk.setNama_produk(request.getParameter("namaProduk"));
-        System.out.println(filePath);
-        produk.setPath_produk(filePath);
+        produk.setPath_produk(savePath);
 
         service.Save(produk);
         response.sendRedirect("produk");

@@ -25,25 +25,22 @@
 <table border="1">
     <tr>
         <th>No </th>
-        <th>nama_produk </th>
-        <th>gambar </th>
-        <th>aksi</th>
+        <th>Nama produk </th>
+        <th>Gambar </th>
+        <th>Aksi</th>
     </tr>
     <tbody>
     <c:forEach items="${produks}" var="produk" varStatus="loop">
     <tr>
         <td>${loop.index+1}</td>
         <td>${produk.nama_produk}</td>
-
         <td> <img src="<c:out value="${produk.path_produk}"/>" width="100"/></td>
-
         <td>
             <a href=" ${loop.index+1} ">Edit</a>
             <a href="/produk?id_produk=${produk.id_produk}" >Hapus</a>
         </td>
     </tr>
     </c:forEach>
-
 
 </table>
 
