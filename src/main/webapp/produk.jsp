@@ -35,7 +35,7 @@
         <td>${loop.index+1}</td>
         <td>${produk.nama_produk}</td>
 
-        <td><img src="${produk.path_produk}" width="100"/></td>
+        <td> <img src="<c:out value="${produk.path_produk}"/>" width="100"/></td>
 
         <td>
             <a href=" ${loop.index+1} ">Edit</a>

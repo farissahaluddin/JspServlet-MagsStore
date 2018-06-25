@@ -39,7 +39,7 @@ public class ProdukServlet extends HttpServlet {
 
         Part part = request.getPart("file");
         String fileName = extractFileName(part);
-        String savePath = "D:/KERJA/MGS/SOAL-JAVAWEB/MgsStore/src/main/webapp/images";
+        String savePath ="D:\\KERJA\\MGS\\SOAL-JAVAWEB\\MgsStore\\src\\main\\webapp\\images";
 //        File fileSaveDir = new File(savePath);
         part.write(savePath+File.separator+fileName);
         String filePath = savePath+File.separator+fileName;
