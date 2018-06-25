@@ -20,7 +20,7 @@
 
     <input type="text" name="harga_barang" placeholder="Harga Barang" style="margin-bottom: 10px"><br>
 
-    <input type="file" name="foto_barang" style="margin-bottom: 10px"><br>
+    <input type="file" name="foto_barang"><br>
 
     <button type="submit" >Simpan</button><br>
 </form>
@@ -48,8 +48,6 @@
             <%--</td>--%>
         <%--</tr>--%>
     <%--</c:forEach>--%>
-
-
     <%--</tbody>--%>
 <%--</table>--%>
 

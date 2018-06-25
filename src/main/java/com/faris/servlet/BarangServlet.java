@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 @WebServlet("/barang")
-@MultipartConfig(fileSizeThreshold = 16999999)
+@MultipartConfig(fileSizeThreshold = 169999999)
 
 public class BarangServlet extends HttpServlet {
 
@@ -29,18 +30,19 @@ public class BarangServlet extends HttpServlet {
 
         String sql = "INSERT INTO tbl_barang (nama_barang, harga_barang, foto_barang) VALUES (?,?,?)";
 
-        try{
+        try {
+
             String nama_barang = request.getParameter("nama_barang");
 
             String harga_barang = request.getParameter("harga_barang");
 
             Part filePart = request.getPart("foto_barang");
 
-            System.out.println("hello"+" "+nama_barang+" "+filePart);
+            System.out.println("hello" + " " + nama_barang + " " + filePart);
 
             InputStream inputStream = null;
 
-            if(filePart != null){
+            if (filePart != null) {
                 long fileSize = filePart.getSize();
                 String fileContent = filePart.getContentType();
                 inputStream = filePart.getInputStream();
@@ -59,18 +61,15 @@ public class BarangServlet extends HttpServlet {
 
             if (rc == 0) {
                 request.setAttribute("message", "error");
-                getServletContext().getRequestDispatcher("/failure.jsp").forward(request,response);
-            }else {
-                request.setAttribute("message", "tersimpan");
-                getServletContext().getRequestDispatcher("/success.jsp").forward(request,response);
+                getServletContext().getRequestDispatcher("/failure.jsp").forward(request, response);
             }
-
-        }catch (Exception e){
+            else {
+                request.setAttribute("message", "tersimpan");
+                getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }
