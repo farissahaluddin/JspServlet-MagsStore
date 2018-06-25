@@ -3,6 +3,7 @@ package com.faris.entity;
 public class Produk {
     int id_produk;
     String nama_produk;
+    String filename;
     String path_produk;
 
     public Produk() {
@@ -24,6 +25,14 @@ public class Produk {
         this.nama_produk = nama_produk;
     }
 
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
     public String getPath_produk() {
         return path_produk;
     }
@@ -37,6 +46,7 @@ public class Produk {
         return "Produk{" +
                 "id_produk=" + id_produk +
                 ", nama_produk='" + nama_produk + '\'' +
+                ", filename='" + filename + '\'' +
                 ", path_produk='" + path_produk + '\'' +
                 '}';
     }

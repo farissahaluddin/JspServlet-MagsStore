@@ -34,7 +34,8 @@
     <tr>
         <td>${loop.index+1}</td>
         <td>${produk.nama_produk}</td>
-        <td> <img src="<c:out value="${produk.path_produk}"/>" width="100"/></td>
+        <td> <img src="<c:out value="images/${produk.filename}"/>" width="100"/></td>
+        <td>${produk.path_produk}</td>
         <td>
             <a href=" ${loop.index+1} ">Edit</a>
             <a href="/produk?id_produk=${produk.id_produk}" >Hapus</a>

@@ -16,13 +16,14 @@ public class ProdukDaoImpl implements ProdukDao {
     @Override
     public Produk Save(Produk entity) {
 
-        String sql = "INSERT INTO tbl_produk VALUES (?,?,?)";
+        String sql = "INSERT INTO tbl_produk VALUES (?,?,?,?)";
 
         try{
             PreparedStatement preparedStatement = DbConnection.getInstance().getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, entity.getId_produk());
             preparedStatement.setString(2, entity.getNama_produk());
-            preparedStatement.setString(3, entity.getPath_produk());
+            preparedStatement.setString(3, entity.getFilename());
+            preparedStatement.setString(4, entity.getPath_produk());
 
             preparedStatement.executeUpdate();
 
@@ -53,6 +54,7 @@ public class ProdukDaoImpl implements ProdukDao {
 
                 produk.setId_produk(resultSet.getInt("id_produk"));
                 produk.setNama_produk(resultSet.getString("nama_produk"));
+                produk.setFilename(resultSet.getString("filename"));
                 produk.setPath_produk(resultSet.getString("path_produk"));
                 produks.add(produk);
             }
