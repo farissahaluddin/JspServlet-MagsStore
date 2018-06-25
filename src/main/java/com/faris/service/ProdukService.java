@@ -4,6 +4,8 @@ import com.faris.dao.ProdukDao;
 import com.faris.dao.impl.ProdukDaoImpl;
 import com.faris.entity.Produk;
 
+import java.util.List;
+
 public class ProdukService implements BaseProduk {
 
         private ProdukDao produkDao = new ProdukDaoImpl();
@@ -17,5 +19,15 @@ public class ProdukService implements BaseProduk {
             }
             return entity;
         }
+
+    @Override
+    public List<Produk> find() {
+        return produkDao.find();
     }
+
+    @Override
+    public String delete(int id_produk) {
+        return produkDao.delete(id_produk);
+    }
+}
 

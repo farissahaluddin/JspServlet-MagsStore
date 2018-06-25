@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Faris
@@ -20,6 +21,31 @@
 
     <button type="submit">Simpan</button><br>
 </form>
+
+<table border="1">
+    <tr>
+        <th>No </th>
+        <th>nama_produk </th>
+        <th>gambar </th>
+        <th>aksi</th>
+    </tr>
+    <tbody>
+    <c:forEach items="${produks}" var="produk" varStatus="loop">
+    <tr>
+        <td>${loop.index+1}</td>
+        <td>${produk.nama_produk}</td>
+
+        <td><img src="${produk.path_produk}" width="100"/></td>
+
+        <td>
+            <a href=" ${loop.index+1} ">Edit</a>
+            <a href="/produk?id_produk=${produk.id_produk}" >Hapus</a>
+        </td>
+    </tr>
+    </c:forEach>
+
+
+</table>
 
 </body>
 </html>

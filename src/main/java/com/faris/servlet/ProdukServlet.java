@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.List;
 
 
 @WebServlet("/produk")
@@ -38,7 +39,7 @@ public class ProdukServlet extends HttpServlet {
 
         Part part = request.getPart("file");
         String fileName = extractFileName(part);
-        String savePath = "D:\\KERJA\\MGS\\SOAL-JAVAWEB\\MgsStore\\src\\main\\webapp\\images";
+        String savePath = "D:/KERJA/MGS/SOAL-JAVAWEB/MgsStore/src/main/webapp/images";
 //        File fileSaveDir = new File(savePath);
         part.write(savePath+File.separator+fileName);
         String filePath = savePath+File.separator+fileName;
@@ -51,7 +52,7 @@ public class ProdukServlet extends HttpServlet {
         produk.setPath_produk(filePath);
 
         service.Save(produk);
-        response.sendRedirect("display.jsp");
+        response.sendRedirect("produk");
     }
 
     private String extractFileName(Part part) {
@@ -65,4 +66,18 @@ public class ProdukServlet extends HttpServlet {
         return "";
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String id_produk = request.getParameter("id_produk");
+        if(id_produk != null){
+            service.delete(Integer.parseInt(id_produk));
+            response.sendRedirect("/produk");
+        }
+
+        List<Produk> produks = service.find();
+        request.setAttribute("produks", produks);
+        request.getRequestDispatcher("/produk.jsp").forward(request, response);
+
+    }
 }
