@@ -1,6 +1,6 @@
 package com.faris.servlet;
 
-import com.faris.entity.Distributor;
+
 import com.faris.entity.Produk;
 import com.faris.service.ProdukService;
 
@@ -38,23 +38,20 @@ public class ProdukServlet extends HttpServlet {
 
         Part part = request.getPart("file");
         String fileName = extractFileName(part);
-        String savePath = "D:\\KERJA\\MGS\\SOAL-JAVAWEB\\MgsStore\\src\\main\\webapp\\images"+File.separator+fileName;
-        File fileSaveDir = new File(savePath);
-
-        part.write(savePath+File.separator);
-
+        String savePath = "D:\\KERJA\\MGS\\SOAL-JAVAWEB\\MgsStore\\src\\main\\webapp\\images";
+//        File fileSaveDir = new File(savePath);
+        part.write(savePath+File.separator+fileName);
+        String filePath = savePath+File.separator+fileName;
 
         if (request.getParameter("id_produk") != null) {
             produk.setId_produk(Integer.parseInt(request.getParameter("id_produk")));
         }
-
         produk.setNama_produk(request.getParameter("namaProduk"));
-        System.out.println(savePath);
-        produk.setPath_produk(request.getParameter("savePath"));
+        System.out.println(filePath);
+        produk.setPath_produk(filePath);
 
         service.Save(produk);
         response.sendRedirect("display.jsp");
-
     }
 
     private String extractFileName(Part part) {
